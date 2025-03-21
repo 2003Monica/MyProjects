@@ -3,28 +3,20 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Home route returns student number as JSON
+# Home route returns your student number in JSON format
 @app.route('/', methods=['GET'])
 def home():
-    # Replace with your actual student number
     return jsonify({"student_number": "200612909"})
 
 # Webhook route for Dialogflow fulfillment
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    # Parse the incoming JSON from Dialogflow
+    # Optionally, process the request from Dialogflow here
     req = request.get_json(force=True)
-    print("Request received:", req)  # For debugging purposes
-    
-    # You can process the request as needed. Here we provide a fixed response.
     fulfillment_text = "This is the response from your webhook fulfillment!"
-    
-    # Build and return the response payload in Dialogflow's expected format.
-    return jsonify({
-        "fulfillmentText": fulfillment_text
-    })
+    return jsonify({"fulfillmentText": fulfillment_text})
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5001))
-    app.run(debug=True, port=port, host="0.0.0.0")
-
+    # Bind to the port provided by the environment, default to 5000
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
