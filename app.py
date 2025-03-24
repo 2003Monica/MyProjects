@@ -13,8 +13,8 @@ def home():
 def webhook():
     # Optionally, process the request from Dialogflow here
     req = request.get_json(force=True)
-    fulfillment_text = "This is the response from your webhook fulfillment!"
-    return jsonify({"fulfillmentText": "This is the response from your webhook fulfillment!"})
+    fulfillment_text = "Hey sure! The average cost of all events would be 100 cad!"
+    return jsonify({"fulfillmentText"})
 
 if __name__ == '__main__':
     # Bind to the port provided by the environment, default to 5000
